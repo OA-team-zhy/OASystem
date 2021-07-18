@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from defaultAPP.views import home
 
 urlpatterns = [
+    path('', home, name="login"),
     path(r'', include("defaultAPP.urls")),
+    path(r'', include("PageNavigation.urls")),
 ]

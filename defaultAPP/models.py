@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 ##用户注册
-class User(models.Model):
+class GeneralUser(models.Model):
     gender = [
         ("m", "男"),
         ("f", "女")
@@ -21,7 +21,7 @@ class User(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['no', 'number'], name='user_id'),
+            models.UniqueConstraint(fields=['no', 'number'], name='generaluser_id'),
         ]
 
     def get_id(self):

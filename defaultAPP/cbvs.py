@@ -1,14 +1,17 @@
 from django.shortcuts import reverse,redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
-from defaultAPP.forms import UserRegisterForm, AdminRegisterForm
+from defaultAPP.forms import GeneralUserRegisterForm, AdminRegisterForm, GeneralUserUpdateForm
 
-from defaultAPP.models import User, Admin
+from defaultAPP.models import GeneralUser, Admin
 import random
 
-class CreateUserView(CreateView):
-    model = User
-    form_class = UserRegisterForm
+from django.views.generic import UpdateView
+from defaultAPP.forms import GeneralUserUpdateForm
+
+class CreateGeneralUserView(CreateView):
+    model = GeneralUser
+    form_class = GeneralUserRegisterForm
     # fields = "__all__"
     template_name = "defaultAPP/register.html"
     success_url = "login"
@@ -17,30 +20,36 @@ class CreateUserView(CreateView):
         # 用户注册时通过注册编号自动生成账号
         no = form.cleaned_data["no"]
         # order_by默认升序排列，number前的负号表示降序排列
-        user_set = User.objects.filter(no=no).order_by("-number")
-        if user_set.count() > 0:
-            last_user = user_set[0]
-            new_number = str(int(last_user.number) + 1)
+        generaluser_set = GeneralUser.objects.filter(no=no).order_by("-number")
+        if generaluser_set.count() > 0:
+            last_generaluser = generaluser_set[0]
+            new_number = str(int(last_generaluser.number) + 1)
             for i in range(6 - len(new_number)):
                 new_number = "0" + new_number
         else:
             new_number = "000001"
 
         # Create, but don't save the new user instance.
-        new_user = form.save(commit=False)
+        new_generaluser = form.save(commit=False)
         # Modify the user
-        new_user.number = new_number
+        new_generaluser.number = new_number
         # Save the new instance.
-        new_user.save()
+        new_generaluser.save()
         # Now, save the many-to-many data for the form.
         form.save_m2m()
 
-        self.object = new_user
+        self.object = new_generaluser
 
         uid = no + new_number
         from_url = "register"
-        base_url = reverse(self.get_success_url(), kwargs={'kind': 'user'})
+        base_url = reverse(self.get_success_url(), kwargs={'kind': 'generaluser'})
         return redirect(base_url + '?uid=%s&from_url=%s' % (uid, from_url))
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateGeneralUserView, self).get_context_data(**kwargs)
+        context["kind"] = "generaluser"
+
+        return context
 
 
 class CreateAdminView(CreateView):
@@ -86,3 +95,39 @@ class CreateAdminView(CreateView):
         from_url = "register"
         base_url = reverse(self.get_success_url(), kwargs={'kind': 'admin'})
         return redirect(base_url + '?uid=%s&from_url=%s' % (uid, from_url))
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateAdminView, self).get_context_data(**kwargs)
+        context["kind"] = "admin"
+
+        return context
+
+
+class UpdateGeneralUserView(UpdateView):
+    model = GeneralUser
+    form_class = GeneralUserUpdateForm
+    template_name = "defaultAPP/update.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateGeneralUserView, self).get_context_data(**kwargs)
+        context.update(kwargs)
+        context["kind"] = "GeneralUser"
+        return context
+
+    def get_success_url(self):
+        return reverse("PageNavigation", kwargs={"kind": "generaluser"})
+
+
+class UpdateAdminView(UpdateView):
+    model = Admin
+    form_class = AdminRegisterForm
+    template_name = "defaultAPP/update.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateAdminView, self).get_context_data(**kwargs)
+        context.update(kwargs)
+        context["kind"] = "admin"
+        return context
+
+    def get_success_url(self):
+        return reverse("PageNavigation", kwargs={"kind": "admin"})

@@ -1,8 +1,8 @@
 from django import forms
-from .models import User, Admin
+from .models import GeneralUser, Admin
 
 
-class UserLoginForm(forms.Form):
+class GeneralUserLoginForm(forms.Form):
     uid = forms.CharField(label='编号', max_length=10)
     password = forms.CharField(label='密码', max_length=30, widget=forms.PasswordInput)
 
@@ -11,11 +11,11 @@ class AdminLoginForm(forms.Form):
     uid = forms.CharField(label='编号', max_length=10)
     password = forms.CharField(label='密码', max_length=30, widget=forms.PasswordInput)
 
-class UserRegisterForm(forms.ModelForm):
+class GeneralUserRegisterForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(), label="确认密码")
 
     class Meta:
-        model = User
+        model = GeneralUser
         fields = ('no',
                   'name',
                   'password',
@@ -26,7 +26,7 @@ class UserRegisterForm(forms.ModelForm):
                   'info')
 
     def clean(self):
-        cleaned_data = super(UserRegisterForm, self).clean()
+        cleaned_data = super(GeneralUserRegisterForm, self).clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
         if confirm_password != password:
@@ -52,3 +52,14 @@ class AdminRegisterForm(forms.ModelForm):
         confirm_password = cleaned_data.get('confirm_password')
         if confirm_password != password:
             self.add_error('confirm_password', 'Password does not match.')
+
+class GeneralUserUpdateForm(GeneralUserRegisterForm):
+    class Meta:
+        model = GeneralUser
+        fields = ('name',
+                  'password',
+                  'confirm_password',
+                  'gender',
+                  'birthday',
+                  'email',
+                  'info')

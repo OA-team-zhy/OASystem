@@ -1,1 +1,1 @@
-INVALID_KIND = "Invalid kind.kind should be user or admin."
+INVALID_KIND = "Invalid kind.kind should be generaluser or admin."
