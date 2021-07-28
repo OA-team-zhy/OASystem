@@ -21,4 +21,7 @@ urlpatterns = [
     path('', home, name="login"),
     path(r'', include("defaultAPP.urls")),
     path(r'', include("PageNavigation.urls")),
+    path(r'', include("notice.urls")),
+    path(r'', include("finance.urls")),
+    path(r'', include("officemanagement.urls")),
 ]
