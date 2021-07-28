@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for notice in notice_list %}
+    <h2>{{ notice.title }}</h2>
+    <p>{{ notice.timestamp }}</p>
+    <p>{{ notice.body }}</p>
+{% endfor %}
+</body>
+</html>
