@@ -105,3 +105,6 @@ def update(request, kind):
         return func(request, pk=pk, context=context)
 
     return redirect("login")
+
+def back(request):
+    return redirect(reverse("login"))

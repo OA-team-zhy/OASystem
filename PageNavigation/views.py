@@ -69,7 +69,7 @@ def generaluser_home(request):
     user = get_user(request, kind)
 
     if not user:
-        return redirect('login', kind = kind)
+        return redirect('login', kind=kind)
 
     info = {
         "name": user.name,

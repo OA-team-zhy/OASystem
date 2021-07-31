@@ -1,4 +1,4 @@
-from django.shortcuts import reverse,redirect
+from django.shortcuts import reverse, redirect
 from django.views.generic import CreateView, UpdateView
 
 from defaultAPP.forms import GeneralUserRegisterForm, AdminRegisterForm, GeneralUserUpdateForm
@@ -6,7 +6,6 @@ from defaultAPP.forms import GeneralUserRegisterForm, AdminRegisterForm, General
 from defaultAPP.models import GeneralUser, Admin
 import random
 
-from django.views.generic import UpdateView
 from defaultAPP.forms import GeneralUserUpdateForm
 
 class CreateGeneralUserView(CreateView):
@@ -111,7 +110,7 @@ class UpdateGeneralUserView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateGeneralUserView, self).get_context_data(**kwargs)
         context.update(kwargs)
-        context["kind"] = "GeneralUser"
+        context["kind"] = "generaluser"
         return context
 
     def get_success_url(self):
