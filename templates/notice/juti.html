@@ -1,0 +1,25 @@
+{% extends "PageNavigation/nav.html" %}
+{% block title %}公告详情{% endblock %}
+{% block content %}
+    {% load static %}
+    <link href="{% static 'css/details.css' %}" rel="stylesheet">
+    <h3>公告详情</h3>
+    <ul class="course-details">
+        <li class="course-detail"><span class="detail-name">公告名</span> {{ object.Article.title }}</li>
+        <li class="course-detail"><span class="detail-name">时间</span>
+            <span class="course-schedules">
+            {% for schedule in object.Article.get_schedules %}
+                <div class="course-schedule">{{ schedule }}</div>
+                <div class="course-schedule">{{ schedule }}</div>
+            {% endfor %}
+            </span>
+        </li>
+
+        <li class="course-detail"><span class="detail-name">内容</span>
+            {% if object.comments != None %}{{ object.comments }}{% else %} - {% endif %}
+        </li>
+
+
+    </ul>
+    <input type="button" value="返回" onclick='location.href="{% url 'view_course' 'is_end'%}"' />
+{% endblock %}

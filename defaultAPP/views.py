@@ -10,7 +10,7 @@ from defaultAPP.models import GeneralUser, Admin
 
 
 def home(request):
-    return render(request, "defaultAPP/login_home.html")
+    return render(request, "defaultAPP/index.html")
 
 def login(request, kind):
     if kind not in ["admin", "generaluser"]:
