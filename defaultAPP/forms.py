@@ -1,5 +1,5 @@
 from django import forms
-from .models import GeneralUser, Admin
+from defaultAPP.models import GeneralUser, Admin
 
 
 class GeneralUserLoginForm(forms.Form):

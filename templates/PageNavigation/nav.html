@@ -57,10 +57,9 @@
                 用户端
             {% endif %}
         </a>
-          <li><a class="active" href="index.html">Home</a></li>
           <li><a href="">财务</a></li>
           <li><a href="">办事</a></li>
-          <li><a href="">公告</a></li>
+          <li><a href="{% url "notice_home" %}">公告</a></li>
           <li><a href="{% url "logout" %}">退出</a></li>
           <li><a href="{% url 'update' info.kind %}">
                 {{ info.name }}

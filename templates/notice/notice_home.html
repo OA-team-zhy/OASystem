@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NOTICE</title>
+</head>
+<body>
+<h1>NOTICE</h1>
+<a href="{% url 'edit_page' 0 %}">编写公告</a>
+<p>公告列表</p>
+{% for article in articles %}
+    <a href="{% url 'article_page' article.id %}">{{ article.title }}</a>
+    <br/>
+{% endfor %}
+<br>
+</body>
+</html>

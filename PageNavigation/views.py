@@ -64,6 +64,7 @@ def admin_home(request):
 
     return render(request, 'PageNavigation/nav.html', context)
 
+
 def generaluser_home(request):
     kind = "generaluser"
     user = get_user(request, kind)
@@ -81,3 +82,43 @@ def generaluser_home(request):
     }
 
     return render(request, 'PageNavigation/nav.html', context)
+
+
+
+def notice(request, kind):
+    if kind == "admin":
+        return admin_notice(request)
+    elif kind == "generaluser":
+        return generaluser_notice(request)
+    return HttpResponse(INVALID_KIND)
+
+def admin_notice(request):
+    kind = "admin"
+    user = get_user(request, kind)
+
+    info = {
+        "name": user.name,
+        "kind": kind
+    }
+
+    context = {
+        "info": info
+    }
+
+    return render(request, 'notice/home.html', context)
+
+
+def generaluser_notice(request):
+    kind = "generaluser"
+    user = get_user(request, kind)
+
+    info = {
+        "name": user.name,
+        "kind": kind
+    }
+
+    context = {
+        "info": info
+    }
+
+    return render(request, 'notice/home.html', context)
