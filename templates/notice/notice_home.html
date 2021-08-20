@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NOTICE</title>
+    <title>公告</title>
 </head>
 <body>
-<h1>NOTICE</h1>
-<a href="{% url 'edit_page' 0 %}">编写公告</a>
+<h1>公告</h1>
+<a href="{% url 'edit_page' 0 %}">添加公告</a>
 <p>公告列表</p>
 {% for article in articles %}
-    <a href="{% url 'article_page' article.id %}">{{ article.title }}</a>
+    <td>{{article.id}}</td>
+    <td ><a href="{% url 'article_page' article.id %}">{{ article.title }}</a></td>
+    <td>{{ article.pub_time }}</td>
     <br/>
 {% endfor %}
 <br>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Page</title>
+    <title>添加公告</title>
 </head>
 <body>
-<form action="{% url 'change' %}" method="post">
+<form id="tid" action="{% url 'change' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="article_id" value="{{ article.id | default:'0' }}">
     <label>公告标题
