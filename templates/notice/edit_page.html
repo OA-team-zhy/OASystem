@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
     <title>添加公告</title>
@@ -11,15 +12,13 @@
         <input type="text" name="title" value="{{ article.title }}" />
     </label>
     <br/>
-    <label>公告内容
+    <label >公告内容
         <input type="text" name="content" value="{{ article.content }}">
     </label>
     <br/>
     <input type="submit" value="提交">
 </form>
 <br/>
-<div>
-    <a href="{% url 'notice_home'%}">Home</a>
-</div>
+    <a href="{% url 'notice_home'%}">返回</a>
 </body>
 </html>
