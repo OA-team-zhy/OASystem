@@ -2,23 +2,62 @@
 {% load static %}
 <html>
 <head>
+
+     <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <style type="text/css">
+ .box1{background: #71a877;text-align: center;line-height: 100px;}
+ .box2{background: #f0f0f0;text-align: center;line-height: 60px;}
+ .box3{background: #ffffff;text-align: center;line-height: 60px;}
+
+ </style>
     <title>添加公告</title>
+    <div  style="font-size: 30px "class="box1">添加公告</div>
+    <link href="{% static 'assets/css/notice.css' %}" rel="stylesheet">
 </head>
 <body>
 <form id="tid" action="{% url 'change' %}" method="post">
     {% csrf_token %}
     <input type="hidden" name="article_id" value="{{ article.id | default:'0' }}">
-    <label>公告标题
-        <input type="text" name="title" value="{{ article.title }}" />
+    <p></p>
+    <label>
+          <div style="color:red;font-size: 20px " class="box3">公告标题</div>
+        <input type="text" name="title" value="{{ article.title }}"size="189" />
     </label>
     <br/>
-    <label >公告内容
-        <input type="text" name="content" value="{{ article.content }}">
+    <label >
+        <p></p>
+        <div style="color:red;font-size: 20px " class="box3">公告内容</div>
+
+        <input type="text" name="content" value="{{ article.content }}" size="189">
     </label>
     <br/>
-    <input type="submit" value="提交">
+    <p><p></p></p>
+    <div align="center"><button onClick="clickme()"  style="width:180px;height:40px;">提交</button></div>
+
+<script>
+	function clickme(){
+	}
+</script>
+
 </form>
 <br/>
-    <a href="{% url 'notice_home'%}">返回</a>
+    <a href="{% url 'notice_home'%}"> <div  style="font-size: 20px "class="box2">返回上一页</div></a>
+ <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
 </body>
 </html>
