@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'defaultAPP.apps.DefaultappConfig',
     'notice.apps.NoticeConfig',
+    'officemanagement.apps.OfficemanagementConfig',
+    'finance.apps.FinanceConfig'
 ]
 
 MIDDLEWARE = [

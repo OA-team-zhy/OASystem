@@ -20,6 +20,8 @@ from defaultAPP.views import home
 urlpatterns = [
     path('', home, name="login"),
     path(r'', include("defaultAPP.urls")),
-    path(r'', include("PageNavigation.urls")),
-    path(r'', include("notice.urls")),
+    path(r'PageNavigation/', include("PageNavigation.urls")),
+    path(r'notice/', include("notice.urls")),
+    path(r'officemanagement/', include("officemanagement.urls")),
+    path(r'finance/', include("finance.urls"))
 ]

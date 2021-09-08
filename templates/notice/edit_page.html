@@ -27,25 +27,20 @@
     {% csrf_token %}
     <input type="hidden" name="article_id" value="{{ article.id | default:'0' }}">
     <p></p>
-    <label>
-          <div style="color:red;font-size: 20px " class="box3">公告标题</div>
-        <input type="text" name="title" value="{{ article.title }}"size="189" />
-    </label>
+<br/>
     <br/>
-    <label >
-        <p></p>
-        <div style="color:red;font-size: 20px " class="box3">公告内容</div>
-
-        <input type="text" name="content" value="{{ article.content }}" size="189">
-    </label>
+        <a class="btn btn-primary " style="display:inline-block;float: left;">公告标题</a>
+<input type="text" name="title" value="{{ article.title }}" class="form-control"  style="width:810px; height:40px"/>
+<br/>
+    <br/>
+<form action="save.php" method="post" >
+    <a class="btn btn-primary " style="display:inline-block;float: left;">公告正文</a>
+ <textarea type="text" name="content" value="{{ article.content }}" cols="100" rows="10"></textarea>
+    <input type="submit" value="提交"  name="submit" />
+    <input type="reset" value="重置"  name="reset" />
+</form>
     <br/>
     <p><p></p></p>
-    <div align="center"><button onClick="clickme()"  style="width:180px;height:40px;">提交</button></div>
-
-<script>
-	function clickme(){
-	}
-</script>
 
 </form>
 <br/>
