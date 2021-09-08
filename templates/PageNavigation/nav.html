@@ -59,7 +59,7 @@
         </a>
           <li><a href="{% url "finance" info.kind %}">财务</a></li>
           <li><a href="{% url "officemanagement" kind=info.kind %}">办事</a></li>
-          <li><a href="{% url "notice_home" %}">公告</a></li>
+          <li><a href="{% url "notice" kind=info.kind %}">公告</a></li>
           <li><a href="{% url "logout" %}">退出</a></li>
           <li><a href="{% url 'update' info.kind %}">
                 {{ info.name }}
@@ -104,7 +104,7 @@
         <div class="col-lg-3 col-md-4 mt-4">
           <div class="icon-box">
             <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
-            <h1><a href="{% url "notice_home" %}">公告</a></h1>
+            <h1><a href="{% url "notice" kind=info.kind %}">公告</a></h1>
           </div>
         </div>
         <div class="col-lg-3 col-md-4 mt-4">

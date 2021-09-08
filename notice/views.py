@@ -1,22 +1,50 @@
 import time
 
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
-
+from constants import INVALID_KIND
 from notice import models
 
+
+def notice_home(request, kind):
+    if kind == "admin":
+        return admin_notice_home(request)
+    elif kind == "generaluser":
+        return generaluser_notice_home(request)
+    return HttpResponse(INVALID_KIND)
+
+
+def admin_notice_home(request):
+
+    articles = models.Article.objects.all()
+
+    return render(request, 'notice/notice_home_admin.html', {'articles': articles})
+
+
+def generaluser_notice_home(request):
+
+    articles = models.Article.objects.all()
+
+    return render(request, 'notice/notice_home_generaluser.html', {'articles': articles})
 
 
 def index(request):
     articles = models.Article.objects.all()
-    return render(request, 'notice/notice_home.html', {'articles': articles})
+    return render(request, 'notice/notice_home_anyone.html', {'articles': articles})
 
 
 def article_page(request, article_id):
     article = models.Article.objects.get(pk=article_id)
     return render(request, 'notice/article_page.html', {'article': article})
 
+def article_page_generaluser(request, article_id):
+    article = models.Article.objects.get(pk=article_id)
+    return render(request, 'notice/article_page_generaluser.html', {'article': article})
+
+def article_page_anyone(request, article_id):
+    article = models.Article.objects.get(pk=article_id)
+    return render(request, 'notice/article_page_anyone.html', {'article': article})
 
 def edit_page(request, article_id):
     if str(article_id) == '0':

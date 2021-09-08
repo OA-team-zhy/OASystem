@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+
+    <title>Article Page</title>
+</head>
+<body>
+ <style type="text/css">
+ .box1{background: #71a877;text-align: center;line-height: 100px;}
+ .box2{background: #f0f0f0;text-align: center;line-height: 60px;}
+ .box3{background: #ffffff;text-align: center;line-height: 60px;}
+
+ </style>
+  <div  style="font-size: 30px "class="box1">公告详情</div>
+ <label>
+          <div style="color:red;font-size: 20px ">公告标题：</div>
+        <h1  class="box3"  >{{ article.title }}</h1>
+    </label>
+
+ <label>
+          <div style="color:red;font-size: 20px ">公告正文：</div>
+        <h3 class="box3" >{{ article.content }}</h3>
+    </label>
+<br/>
+
+<br/>
+ <br/>
+  <a href="{% url 'edit_page' article.id %}" align="center"><button onClick="clickme()"  style="width:180px;height:40px;">添加</button></a>
+ <br/>
+ <br/>
+ <br/>
+<input type="button" name="Submit" onclick="javascript:history.back(-1);" style="width:1510px;height:30px;" value="返回上一页"  >
+</body>
+</html>
