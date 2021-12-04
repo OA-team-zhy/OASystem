@@ -14,7 +14,10 @@ body {
 
 .nav {
     background: #4a2c98;
+    position: fixed;
     width: 100%;
+    color: #ccc;
+    z-index: 1;
 }
 
 .nav a {

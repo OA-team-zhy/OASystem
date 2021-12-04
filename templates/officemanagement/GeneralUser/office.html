@@ -1,0 +1,38 @@
+{% extends "PageNavigation/model.html" %}
+{% load static %}
+{% block title %}会议室详情{% endblock %}
+{% block content %}
+    <link href="{% static 'css/details.css' %}" rel="stylesheet">
+
+    <h3>会议室详情</h3>
+    <ul class="office-details">
+        <li class="office-detail"><span class="detail-name">会议室编号</span> {{ object.office.id }}</li>
+        <li class="office-detail"><span class="detail-name">会议室名称</span> {{ object.office.name }}</li>
+        <li class="office-detail"><span class="detail-name">当前人数/最大人数</span> {{ object.office.get_current_count }}/{{ object.office.max_number }}</li>
+        <li class="office-detail"><span class="detail-name">年份</span> {{ object.office.year }}</li>
+        <li class="office-detail"><span class="detail-name">学期</span> {{ object.office.get_semester_display }}</li>
+
+
+            <span class="office-schedules">
+            {% for schedule in object.office.get_schedules %}
+                <div class="office-schedule">{{ schedule }}</div>
+                <div class="office-schedule">{{ schedule }}</div>
+            {% endfor %}
+            </span>
+        </li>
+        <li class="office-detail"><span class="detail-name">得分</span>
+            {% if object.scores != None %}{{ object.scores }}{% else %} - {% endif %}
+        </li>
+        <li class="office-detail"><span class="detail-name">评语</span>
+            {% if object.comments != None %}{{ object.comments }}{% else %} - {% endif %}
+        </li>
+        <li class="office-detail"><span class="detail-name">用户评分</span>
+            {% if object.rating != None %}{{ object.rating }}{% else %} - {% endif %}
+        </li>
+        <li class="office-detail"><span class="detail-name">用户评价</span>
+            {% if object.assessment != None %}{{ object.assessment }}{% else %} - {% endif %}
+        </li>
+
+    </ul>
+    <input type="button" value="返回" onclick='location.href="{% url 'view_office' 'is_end'%}"' />
+{% endblock %}
